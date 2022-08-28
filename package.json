@@ -1,0 +1,17 @@
+{
+  "name": "personal-finances",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/G3N7/personal-finances.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/G3N7/personal-finances/issues"
+  },
+  "workspaces": ["packages/*"],
+  "homepage": "https://github.com/G3N7/personal-finances#readme"
+}
