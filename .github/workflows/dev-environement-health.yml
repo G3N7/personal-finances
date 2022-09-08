@@ -28,7 +28,7 @@ jobs:
         run: docker compose -f .devcontainer/docker-compose.yml up -d
 
       - name: Wait until the environment is up
-        run: $WORK_DIR/helpers/wait-until.sh '[elk] current.health="GREEN"'
+        run: $WORK_DIR/helpers/wait-until.sh 'docker compose logs | grep \'[elk] current.health="GREEN"\''
         shell: bash
       
       - name: Inspect Dev Environment
