@@ -28,8 +28,8 @@ jobs:
       - name: Start Compose
         run: docker compose -f $DEV_ENV_COMPOSE_FILE up -d
 
-      - name: Run the node app
-        run: docker compose -f $DEV_ENV_COMPOSE_FILE exec app npm start
+      # - name: Run the node app
+      #   run: docker compose -f $DEV_ENV_COMPOSE_FILE exec app npm start
 
       - name: Wait until the environment is up
         run: $WORK_DIR/helpers/wait-until.sh "docker compose -f $DEV_ENV_COMPOSE_FILE logs | grep 'current.health=\"GREEN\"'"
