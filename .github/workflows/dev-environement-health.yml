@@ -29,6 +29,7 @@ jobs:
 
       - name: Wait until the environment is up
         run: $WORK_DIR/helpers/wait-until.sh '[elk] current.health="GREEN"'
+        shell: bash
       
       - name: Inspect Dev Environment
         # placeholder not implemented
