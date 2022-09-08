@@ -38,4 +38,4 @@ jobs:
 
       - name: Check for Kibana Server
         # placeholder not implemented
-        run: curl -s "http://localhost:5601"
+        run: curl -s "http://localhost:5601" | grep 'kibana'
