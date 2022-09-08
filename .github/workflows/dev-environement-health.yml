@@ -32,12 +32,12 @@ jobs:
         run: $WORK_DIR/helpers/wait-until.sh "docker compose -f $DEV_ENV_COMPOSE_FILE logs | grep 'current.health=\"GREEN\"'"
         shell: bash
 
-      - name: Show compose log for debugging
-        run: docker compose -f $DEV_ENV_COMPOSE_FILE logs
-        if: always()
-
       - name: Check for Elk Server
         run: curl -s "http://0.0.0.0:9200" | grep 'elk'
 
       - name: Check for Kibana Server
         run: curl -L "http://0.0.0.0:5601"
+
+      - name: Show compose log for debugging
+        run: docker compose -f $DEV_ENV_COMPOSE_FILE logs
+        if: always()
