@@ -34,7 +34,8 @@ jobs:
 
       - name: Show compose log for debugging
         run: docker compose -f $DEV_ENV_COMPOSE_FILE logs
-      
+        if: always()
+
       - name: Check for Elk Server
         run: curl -s "http://localhost:9200" | grep 'elk'
 
