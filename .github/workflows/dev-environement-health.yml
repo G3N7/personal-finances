@@ -37,7 +37,7 @@ jobs:
         if: always()
 
       - name: Check for Elk Server
-        run: curl -s "http://localhost:9200" | grep 'elk'
+        run: curl -s "http://0.0.0.0:9200" | grep 'elk'
 
       - name: Check for Kibana Server
-        run: curl -L "http://localhost:5601"
+        run: curl -L "http://0.0.0.0:5601"
