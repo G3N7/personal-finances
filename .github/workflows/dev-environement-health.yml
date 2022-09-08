@@ -31,6 +31,9 @@ jobs:
       - name: Wait until the environment is up
         run: $WORK_DIR/helpers/wait-until.sh "docker compose -f $DEV_ENV_COMPOSE_FILE logs | grep 'current.health=\"GREEN\"'"
         shell: bash
+
+      - name: Show compose log for debugging
+        run: docker compose -f $DEV_ENV_COMPOSE_FILE logs
       
       - name: Check for Elk Server
         run: curl -s "http://localhost:9200" | grep 'elk'
