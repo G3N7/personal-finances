@@ -1,4 +1,4 @@
-name: Production Build and Publish
+name: Dev Environment Health
 
 # Controls when the workflow will run
 on:
