@@ -6,7 +6,7 @@ OK, so this is a bit of an experiment in explaining the process with pointers so
 I added a [couple of simple workflows](https://github.com/G3N7/personal-finances/actions) for [Github Actions](https://github.com/features/actions), which is a "build server" for lack of a better term.
 
 * [Production Build and Publish](https://github.com/G3N7/personal-finances/actions/workflows/production-build-and-publish.yml) - This is used to build the app, and distribute/archive any artifacts, like containers you could run in production.
-* [Dev Environment Health](https://github.com/G3N7/personal-finances/actions/workflows/dev-environement-health.yml)
+* [Dev Environment Health](https://github.com/G3N7/personal-finances/actions/workflows/dev-environement-health.yml) - Which is used to validate that the dev environement works as expected.
 
 These definitions on a normal team would evolve over time, someone like me might over complicate the modularity out of the gate, whereas a novice might start out with everything in one workflow.  Finding a balance is key.
 
