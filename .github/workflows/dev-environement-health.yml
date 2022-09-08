@@ -34,4 +34,4 @@ jobs:
       
       - name: Inspect Dev Environment
         # placeholder not implemented
-        run: exit 0
+        run: curl "http://localhost:9200" | grep 'elk'
