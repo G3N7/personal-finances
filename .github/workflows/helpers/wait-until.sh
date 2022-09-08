@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Thanks https://github.com/nickjj/wait-until
 
 command="${1}"
 timeout="${2:-30}"
