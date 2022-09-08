@@ -2,7 +2,12 @@
   "name": "personal-finances",
   "version": "1.0.0",
   "scripts": {
-    "start": "npm start --workspaces"
+    "start": "npm run start --workspaces --if-present",
+    "clean": "npm run clean:nm & npm run clean:dist",
+    "clean:nm": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "clean:dist": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present"
   },
   "repository": {
     "type": "git",
