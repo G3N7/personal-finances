@@ -33,9 +33,8 @@ jobs:
         shell: bash
       
       - name: Check for Elk Server
-        # placeholder not implemented
         run: curl -s "http://localhost:9200" | grep 'elk'
 
       - name: Check for Kibana Server
         # placeholder not implemented
-        run: curl -s "http://localhost:5601" | grep 'kibana'
+        run: curl -s "http://localhost:5601" | echo
