@@ -25,15 +25,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Start Dev Environment
+      - name: Start Compose
         run: docker compose -f $DEV_ENV_COMPOSE_FILE up -d
+
+      - name: Run the node app
+        run: docker compose -f $DEV_ENV_COMPOSE_FILE exec app npm start
 
       - name: Wait until the environment is up
         run: $WORK_DIR/helpers/wait-until.sh "docker compose -f $DEV_ENV_COMPOSE_FILE logs | grep 'current.health=\"GREEN\"'"
         shell: bash
 
       - name: Check for Elk Server
-        run: curl -s "http://0.0.0.0:9200" | grep 'elk'
+        run: curl -s "http://localhost:9200" | grep 'elk'
 
       # - name: Check for Kibana Server
       #   run: |
@@ -49,6 +52,8 @@ jobs:
       #     -H 'Upgrade-Insecure-Requests: 1' \
       #     -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36' \
       #     --compressed
+
+
 
       - name: Show compose log for debugging
         run: docker compose -f $DEV_ENV_COMPOSE_FILE logs
