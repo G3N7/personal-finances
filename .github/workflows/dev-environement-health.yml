@@ -2,6 +2,7 @@ name: Dev Environment Health
 
 env:
   WORK_DIR: .github/workflows
+  DEV_ENV_COMPOSE_FILE: .devcontainer/docker-compose.yml
 
 # Controls when the workflow will run
 on:
@@ -25,10 +26,10 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Start Dev Environment
-        run: docker compose -f .devcontainer/docker-compose.yml up -d
+        run: docker compose -f $DEV_ENV_COMPOSE_FILE up -d
 
       - name: Wait until the environment is up
-        run: $WORK_DIR/helpers/wait-until.sh "docker compose logs | grep 'current.health=\"GREEN\"'"
+        run: $WORK_DIR/helpers/wait-until.sh "docker compose -f $DEV_ENV_COMPOSE_FILE logs | grep 'current.health=\"GREEN\"'"
         shell: bash
       
       - name: Inspect Dev Environment
