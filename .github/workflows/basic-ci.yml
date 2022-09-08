@@ -33,5 +33,5 @@ jobs:
         run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t $PROJECT_NAME/builder -f builder.dockerfile .
 
       # Runs a single command using the runners shell
-      - name: Build Docs Image
+      - name: Build Import Tools Image
         run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t $PROJECT_NAME/docs -f docs.dockerfile .
