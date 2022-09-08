@@ -36,4 +36,4 @@ jobs:
         run: curl -s "http://localhost:9200" | grep 'elk'
 
       - name: Check for Kibana Server
-        run: curl -sL "http://localhost:5601" | echo
+        run: curl -sL "http://localhost:5601" # | grep 'kibana'
