@@ -32,6 +32,10 @@ jobs:
         run: $WORK_DIR/helpers/wait-until.sh "docker compose -f $DEV_ENV_COMPOSE_FILE logs | grep 'current.health=\"GREEN\"'"
         shell: bash
       
-      - name: Inspect Dev Environment
+      - name: Check for Elk Server
         # placeholder not implemented
-        run: curl "http://localhost:9200" | grep 'elk'
+        run: curl -s "http://localhost:9200" | grep 'elk'
+
+      - name: Check for Kibana Server
+        # placeholder not implemented
+        run: curl -s "http://localhost:5601"
