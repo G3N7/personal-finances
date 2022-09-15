@@ -22,15 +22,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Docker Login
-        shell: bash
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        run: |
-          echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
-
-  build:
+  build-and-publish:
     uses: ./.github/workflows/container-build-and-publish.yml
     secrets: inherit
     needs: checkout
@@ -43,6 +35,6 @@ jobs:
     uses: ./.github/workflows/container-test.yml
     needs: build
 
-  publish:
-    uses: ./.github/workflows/container-publish.yml
+  tag-latest:
+    uses: ./.github/workflows/container-tag-latest.yml
     needs: [audit, test]
