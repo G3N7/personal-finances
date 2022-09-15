@@ -23,13 +23,13 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: "Build"
-        uses: "$CONTAINER_DIR/build.yml"
+        uses: $CONTAINER_DIR/build.yml
 
       - name: "Audit"
-        uses: "$CONTAINER_DIR/audit.yml"
+        uses: $CONTAINER_DIR/audit.yml
 
       - name: "Test"
-        uses: "$CONTAINER_DIR/test.yml"
+        uses: $CONTAINER_DIR/test.yml
 
       - name: "Publish"
-        uses: "$CONTAINER_DIR/publish.yml"
+        uses: $CONTAINER_DIR/publish.yml
