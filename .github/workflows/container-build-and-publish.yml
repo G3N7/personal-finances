@@ -21,13 +21,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Docker Login
-        shell: bash
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        run: |
-          echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
+      # - name: Docker Login
+      #   shell: bash
+      #   env:
+      #     DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      #     DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      #   run: |
+      #     echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
 
       - name: Build Base Image
         run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t gent/personal-finance-builder -t personal-finance-builder -f builder.dockerfile .
