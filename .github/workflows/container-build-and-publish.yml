@@ -26,7 +26,8 @@ jobs:
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        run: echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
+        run: |
+          echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
 
       - name: Build Base Image
         run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.BUILDER_TAG }} -f builder.dockerfile .
