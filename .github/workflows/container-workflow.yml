@@ -24,12 +24,16 @@ jobs:
 
   build:
     uses: ./.github/workflows/container-build.yml
+    needs: checkout
 
   audit:
     uses: ./.github/workflows/container-audit.yml
+    needs: build
 
   test:
     uses: ./.github/workflows/container-test.yml
+    needs: build
 
   publish:
     uses: ./.github/workflows/container-publish.yml
+    needs: [audit, test]
