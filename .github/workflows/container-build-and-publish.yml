@@ -30,10 +30,10 @@ jobs:
           echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
 
       - name: Build Base Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.BUILDER_TAG }} -f builder.dockerfile .
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t gent/personal-finance-builder -t personal-finance-builder -f builder.dockerfile .
 
       - name: Build Import Tools Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.IMPORT_TOOL_TAG }} -f import-tool.dockerfile .
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t gent/personal-finance-import-tool -t personal-finance-import-tool -f import-tool.dockerfile .
 
       - name: Push Images
-        run: docker push -t ${{ env.BUILDER_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.BUILDER_TAG }} && docker push -t ${{ env.IMPORT_TOOL_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.IMPORT_TOOL_TAG }}
+        run: docker push gent/personal-finance-builder && docker push gent/personal-finance-import-tool
