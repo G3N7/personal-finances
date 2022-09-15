@@ -21,17 +21,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Build Base Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.BUILDER_TAG }} -f builder.dockerfile .
-
-      - name: Build Import Tools Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.IMPORT_TOOL_TAG }} -f import-tool.dockerfile .
-
       - name: Docker Login
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
         run: echo test | docker login -u test --password-stdin
+
+      - name: Build Base Image
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.BUILDER_TAG }} -f builder.dockerfile .
+
+      - name: Build Import Tools Image
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.IMPORT_TOOL_TAG }} -f import-tool.dockerfile .
 
       - name: Push Images
         run: docker push -t ${{ env.BUILDER_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.BUILDER_TAG }} && docker push -t ${{ env.IMPORT_TOOL_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.IMPORT_TOOL_TAG }}
