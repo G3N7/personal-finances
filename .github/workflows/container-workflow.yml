@@ -1,0 +1,21 @@
+name: Container Workflow
+
+env:
+  CONTAINER_DIR: ./.github/workflows/container
+  
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  build:
+    uses: $CONTAINER_DIR/build.yml
+  test:
+    uses: $CONTAINER_DIR/test.yml
+  publish:
+    uses: $CONTAINER_DIR/publish.yml

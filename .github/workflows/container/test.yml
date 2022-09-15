@@ -1,18 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Container Publish
+name: Container Validation
 
 env:
   PROJECT_NAME: personal-finance
 
 # Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  workflow_run:
-    workflows: ["Container Validation"]
-    branches: [main]
-    types: 
-      - completed
+on: [workflow_call]
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,5 +22,6 @@ jobs:
       # - name: Build the base image
       #   run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t $PROJECT_NAME/builder -f builder.dockerfile .
       
-      - name: Deploy to Docker Hub
+      # Runs a single command using the runners shell
+      - name: NPM Test
         run: exit 1 # not implemented
