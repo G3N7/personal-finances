@@ -23,5 +23,5 @@ jobs:
       
       # Runs a single command using the runners shell
       - name: NPM Test
-        run: docker run $PROJECT_NAME/builder npm audit --audit-level high
+        run: docker run gent/personal-finance-builder npm audit --audit-level high
 
