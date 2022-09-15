@@ -23,13 +23,13 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: "Build"
-        uses: $CONTAINER_DIR/build.yml
+        uses: ./.github/workflows/container/build.yml
 
       - name: "Audit"
-        uses: $CONTAINER_DIR/audit.yml
+        uses: ./.github/workflows/container/audit.yml
 
       - name: "Test"
-        uses: $CONTAINER_DIR/test.yml
+        uses: ./.github/workflows/container/test.yml
 
       - name: "Publish"
-        uses: $CONTAINER_DIR/publish.yml
+        uses: ./.github/workflows/container/publish.yml
