@@ -32,7 +32,7 @@ jobs:
 
   build:
     uses: ./.github/workflows/container-build-and-publish.yml
-    secrets:
+    with:
       DOCKER_USER: ${{ secrets.DOCKER_USER }}
       DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
     needs: checkout
