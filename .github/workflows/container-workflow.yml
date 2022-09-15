@@ -13,7 +13,7 @@ on:
 
 
 jobs:
-  build:
+  checkout:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -22,14 +22,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: "Build"
-        uses: ./.github/workflows/container/build.yml
+  build:
+    uses: ./.github/workflows/container/build.yml
 
-      - name: "Audit"
-        uses: ./.github/workflows/container/audit.yml
+  audit:
+    uses: ./.github/workflows/container/audit.yml
 
-      - name: "Test"
-        uses: ./.github/workflows/container/test.yml
+  test:
+    uses: ./.github/workflows/container/test.yml
 
-      - name: "Publish"
-        uses: ./.github/workflows/container/publish.yml
+  publish:
+    uses: ./.github/workflows/container/publish.yml
