@@ -36,4 +36,4 @@ jobs:
         run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t gent/personal-finance-import-tool -t personal-finance-import-tool -f import-tool.dockerfile .
 
       - name: Push Images
-        run: docker push gent/personal-finance-builder && docker push gent/personal-finance-import-tool
+        run: docker push --all-tags gent/personal-finance-builder && docker push --all-tags gent/personal-finance-import-tool
