@@ -22,13 +22,13 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build Base Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.BUILDER_TAG }}:${{ github.sha }} -f builder.dockerfile .
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.BUILDER_TAG }} -f builder.dockerfile .
 
       - name: Build Import Tools Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.IMPORT_TOOL_TAG }}:${{ github.sha }} -f import-tool.dockerfile .
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.IMPORT_TOOL_TAG }} -f import-tool.dockerfile .
 
       - name: Docker Login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
 
       - name: Push Images
-        run: docker push -t ${{ env.BUILDER_TAG }}:${{ github.sha }} ${{ secrets.DOCKER_USER }}/${{ env.BUILDER_TAG }} && docker push -t ${{ env.IMPORT_TOOL_TAG }}:${{ github.sha }} ${{ secrets.DOCKER_USER }}/${{ env.IMPORT_TOOL_TAG }}
+        run: docker push -t ${{ env.BUILDER_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.BUILDER_TAG }} && docker push -t ${{ env.IMPORT_TOOL_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.IMPORT_TOOL_TAG }}
