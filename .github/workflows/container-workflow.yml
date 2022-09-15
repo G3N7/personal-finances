@@ -14,8 +14,22 @@ on:
 
 jobs:
   build:
-    uses: $CONTAINER_DIR/build.yml
-  test:
-    uses: $CONTAINER_DIR/test.yml
-  publish:
-    uses: $CONTAINER_DIR/publish.yml
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: "Build"
+        uses: "$CONTAINER_DIR/build.yml"
+
+      - name: "Audit"
+        uses: "$CONTAINER_DIR/audit.yml"
+
+      - name: "Test"
+        uses: "$CONTAINER_DIR/test.yml"
+
+      - name: "Publish"
+        uses: "$CONTAINER_DIR/publish.yml"
