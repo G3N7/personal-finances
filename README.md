@@ -1,5 +1,9 @@
 # personal-finances
 
+[![Dev Environment Health](https://github.com/G3N7/personal-finances/actions/workflows/dev-environement-health.yml/badge.svg)](https://github.com/G3N7/personal-finances/actions/workflows/dev-environement-health.yml)
+[![Container Workflow](https://github.com/G3N7/personal-finances/actions/workflows/container-workflow.yml/badge.svg)](https://github.com/G3N7/personal-finances/actions/workflows/container-workflow.yml)
+
+
 ## First Time Setup
 Uses VS Code with Remote containers, you must install Docker Desktop [Windows](https://docs.docker.com/desktop/install/windows-install/) or [Mac](https://docs.docker.com/desktop/install/mac-install/), [VS Code](https://code.visualstudio.com/download), and the [VS Code Remote Container Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
 
