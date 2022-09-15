@@ -22,6 +22,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Docker Login
+        shell: bash
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
