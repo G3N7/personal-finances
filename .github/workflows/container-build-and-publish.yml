@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Container Build
+name: Container Build and Publish
 
 env:
   BUILDER_TAG: personal-finance-builder
@@ -12,7 +12,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
+  build-and-publish:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -21,16 +21,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
       - name: Build Base Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{secrets.DOCKER_USER}}/${{env.BUILD_TAG}} -f builder.dockerfile .
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.BUILDER_TAG }}:${{ github.sha }} -f builder.dockerfile .
 
-      # Runs a single command using the runners shell
       - name: Build Import Tools Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{secrets.DOCKER_USER}}/${{env.IMPORT_TOOL_TAG}} -f import-tool.dockerfile .
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.IMPORT_TOOL_TAG }}:${{ github.sha }} -f import-tool.dockerfile .
 
       - name: Docker Login
-        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASS}}
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
 
       - name: Push Images
-        run: docker push ${{secrets.DOCKER_USER}}/${{env.BUILDER_TAG}} && docker push ${{secrets.DOCKER_USER}}/${{env.IMPORT_TOOL_TAG}}
+        run: docker push -t ${{ env.BUILDER_TAG }}:${{ github.sha }} ${{ secrets.DOCKER_USER }}/${{ env.BUILDER_TAG }} && docker push -t ${{ env.IMPORT_TOOL_TAG }}:${{ github.sha }} ${{ secrets.DOCKER_USER }}/${{ env.IMPORT_TOOL_TAG }}
