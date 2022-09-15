@@ -3,8 +3,8 @@
 name: Container Build
 
 env:
-  PROJECT_NAME: personal-finance
-
+  BUILDER_TAG: personal-finance-builder
+  IMPORT_TOOL_TAG: personal-finance-import-tool
 # Controls when the workflow will run
 on: 
   # Makes this callable
@@ -25,8 +25,14 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build Base Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t $PROJECT_NAME/builder -f builder.dockerfile .
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{secrets.DOCKER_USER}}/$BUILD_TAG -f builder.dockerfile .
 
       # Runs a single command using the runners shell
       - name: Build Import Tools Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t $PROJECT_NAME/import-tool -f import-tool.dockerfile .
+        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{secrets.DOCKER_USER}}/$IMPORT_TOOL_TAG -f import-tool.dockerfile .
+
+      - name: Docker Login
+        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASS}}
+
+      - name: Push Images
+        run: docker push ${{secrets.DOCKER_USER}}/$BUILDER_TAG && docker push ${{secrets.DOCKER_USER}}/$IMPORT_TOOL_TAG
