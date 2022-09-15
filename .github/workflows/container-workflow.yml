@@ -29,11 +29,11 @@ jobs:
 
   audit:
     uses: ./.github/workflows/container-audit.yml
-    needs: build
+    needs: build-and-publish
 
   test:
     uses: ./.github/workflows/container-test.yml
-    needs: build
+    needs: build-and-publish
 
   tag-latest:
     uses: ./.github/workflows/container-tag-latest.yml
