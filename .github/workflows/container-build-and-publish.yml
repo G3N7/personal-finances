@@ -31,7 +31,7 @@ jobs:
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+        run: echo test | docker login -u test --password-stdin
 
       - name: Push Images
         run: docker push -t ${{ env.BUILDER_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.BUILDER_TAG }} && docker push -t ${{ env.IMPORT_TOOL_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.IMPORT_TOOL_TAG }}
