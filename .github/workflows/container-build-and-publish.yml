@@ -28,7 +28,10 @@ jobs:
         run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t ${{ env.IMPORT_TOOL_TAG }} -f import-tool.dockerfile .
 
       - name: Docker Login
-        run: echo ${{ secrets.DOCKER_PASS }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
 
       - name: Push Images
         run: docker push -t ${{ env.BUILDER_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.BUILDER_TAG }} && docker push -t ${{ env.IMPORT_TOOL_TAG }} ${{ secrets.DOCKER_USER }}/${{ env.IMPORT_TOOL_TAG }}
