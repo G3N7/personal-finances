@@ -23,3 +23,5 @@ jobs:
       
       - name: tag latest
         run: exit 0 # not implemented
+
+              # ref -t $REPO_NAME/$IMPORT_TOOL_TAG:${{ github.ref_name }}  :${{ github.sha }}
