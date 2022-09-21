@@ -23,6 +23,6 @@ jobs:
       
       # Runs a single command using the runners shell
       - name: NPM Test
-        run: docker run gent/personal-finance-tester npm test
+        run: docker run gent/personal-finance-tester:${{ github.sha }} npm test
         # limit runtime to something reasonable given what we are doing.
         timeout-minutes: 5
