@@ -13,11 +13,11 @@ on:
       container_tags:
         required: true
         type: string
-        description: This will be parsed as an array. [some1, thing2, thing7]
+        description: This will be parsed as an array without brackets. some1, thing2, thing7
 
 env:
   REPO_NAME: ${{ inputs.repo_name }}
-  CONTAINER_TAGS: ${{ fromJSON(inputs.container_tags) }}
+  CONTAINER_TAGS: ${{ inputs.container_tags }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,6 +26,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Explain
+        run: echo "We are going to retag these images as latest $CONTAINER_TAGS in the repo $REPO_NAME"
+
       - name: Tag Images Latest
         run: |
           for CONTAINER_TAG in $CONTAINER_TAGS
