@@ -7,6 +7,7 @@
     "clean:nm": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "clean:dist": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
     "test": "npm run test --workspaces --if-present",
+    "test:dev": "npm run test --workspaces --if-present",
     "build": "npm run build --workspaces --if-present"
   },
   "repository": {
@@ -17,6 +18,8 @@
   "bugs": {
     "url": "https://github.com/G3N7/personal-finances/issues"
   },
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "homepage": "https://github.com/G3N7/personal-finances#readme"
 }
