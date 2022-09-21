@@ -38,3 +38,6 @@ jobs:
   tag-latest:
     uses: ./.github/workflows/container-tag-latest.yml
     needs: [audit, test]
+
+  # promote:
+  #   run: echo "Replace Staging/Production w/e you would like to do after you have a clean new version of the software."
