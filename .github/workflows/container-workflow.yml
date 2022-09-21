@@ -49,7 +49,7 @@ jobs:
     uses: ./.github/workflows/container-tag-latest.yml
     needs: [audit, test, codeQL]
     with:
-      repo_name: ${{ env.REPO_NAME }}
+      repo_name: $REPO_NAME
       container_tags: "[ $BUILDER_TAG, $TESTER_TAG, $IMPORT_TOOL_TAG ]"
 
   # promote:
