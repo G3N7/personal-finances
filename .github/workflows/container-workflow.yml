@@ -47,6 +47,7 @@ jobs:
 
   tag-latest:
     uses: ./.github/workflows/container-tag-latest.yml
+    secrets: inherit
     needs: [audit, test, codeQL]
 
   # promote:

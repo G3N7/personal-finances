@@ -20,6 +20,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Docker Login
+        shell: bash
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        run: |
+          echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
+
       - name: Tag Images Latest
         run: |
           docker tag "$REPO_NAME/$BUILDER_TAG:${{ github.sha }}" "$REPO_NAME/$BUILDER_TAG:${{ github.ref_name }}"
