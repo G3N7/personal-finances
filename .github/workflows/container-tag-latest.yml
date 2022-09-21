@@ -32,6 +32,7 @@ jobs:
       - name: Tag Images Latest
         run: |
           for CONTAINER_TAG in $CONTAINER_TAGS
+          do
             docker tag $REPO_NAME/$CONTAINER_TAG:${{ github.sha }} $REPO_NAME/$CONTAINER_TAG:${{ github.ref_name }}
             docker tag $REPO_NAME/$CONTAINER_TAG:${{ github.sha }} $REPO_NAME/$CONTAINER_TAG:latest
           done
