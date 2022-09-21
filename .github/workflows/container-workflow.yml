@@ -50,7 +50,7 @@ jobs:
     needs: [audit, test, codeQL]
     with:
       repo_name: $REPO_NAME
-      container_tags: "[$BUILDER_TAG, $TESTER_TAG, $IMPORT_TOOL_TAG]"
+      container_tags: "$BUILDER_TAG $TESTER_TAG $IMPORT_TOOL_TAG"
 
   # promote:
   #   run: echo "Replace Staging/Production w/e you would like to do after you have a clean new version of the software."
