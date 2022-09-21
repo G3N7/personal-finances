@@ -2,9 +2,6 @@
 
 name: Container Tag Latest
 
-env:
-  PROJECT_NAME: personal-finance
-
 # Controls when the workflow will run
 on:
   # Makes this callable
@@ -17,6 +14,10 @@ on:
         required: true
         type: string
         description: This will be parsed as an array. [some1, thing2, thing7]
+
+env:
+  REPO_NAME: ${{ inputs.repo_name }}
+  CONTAINER_TAGS: ${{ fromJSON(inputs.container_tags) }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
