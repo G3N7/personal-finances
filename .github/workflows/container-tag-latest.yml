@@ -2,22 +2,16 @@
 
 name: Container Tag Latest
 
+env:
+  REPO_NAME: gent
+  BUILDER_TAG: personal-finance-builder
+  TESTER_TAG: personal-finance-tester
+  IMPORT_TOOL_TAG: personal-finance-import-tool
+
 # Controls when the workflow will run
 on:
   # Makes this callable
   workflow_call:
-    inputs:
-      repo_name:
-        required: true
-        type: string
-      container_tags:
-        required: true
-        type: string
-        description: This will be parsed as an array without brackets. some1, thing2, thing7
-
-env:
-  REPO_NAME: ${{ inputs.repo_name }}
-  CONTAINER_TAGS: ${{ inputs.container_tags }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,21 +20,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Explain
-        run: echo "We are going to retag these images as latest $CONTAINER_TAGS in the repo $REPO_NAME"
-
       - name: Tag Images Latest
         run: |
-          for CONTAINER_TAG in $CONTAINER_TAGS
-          do
-            docker tag $REPO_NAME/$CONTAINER_TAG:${{ github.sha }} $REPO_NAME/$CONTAINER_TAG:${{ github.ref_name }}
-            docker tag $REPO_NAME/$CONTAINER_TAG:${{ github.sha }} $REPO_NAME/$CONTAINER_TAG:latest
-          done
+          docker tag "$REPO_NAME/$BUILDER_TAG:${{ github.sha }}" "$REPO_NAME/$BUILDER_TAG:${{ github.ref_name }}"
+          docker tag "$REPO_NAME/$BUILDER_TAG:${{ github.sha }}" "$REPO_NAME/$BUILDER_TAG:latest"
 
-    # # Steps represent a sequence of tasks that will be executed as part of the job
-    # steps:
-    #   - name: Tag Builder Latest
-    #     run: |
-    #       docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:${{ github.sha }}
-    #       docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:${{ github.ref_name }}
-    #       docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:latest
+          docker tag "$REPO_NAME/$TESTER_TAG:${{ github.sha }}" "$REPO_NAME/$TESTER_TAG:${{ github.ref_name }}"
+          docker tag "$REPO_NAME/$TESTER_TAG:${{ github.sha }}" "$REPO_NAME/$TESTER_TAG:latest"
+
+          docker tag "$REPO_NAME/$IMPORT_TOOL_TAG:${{ github.sha }}" "$REPO_NAME/$IMPORT_TOOL_TAG:${{ github.ref_name }}"
+          docker tag "$REPO_NAME/$IMPORT_TOOL_TAG:${{ github.sha }}" "$REPO_NAME/$IMPORT_TOOL_TAG:latest"
