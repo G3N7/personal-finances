@@ -1,4 +1,4 @@
-# This is a basic workflow to help you get started with Actions
+  # This is a basic workflow to help you get started with Actions
 
 name: Container Tag Latest
 
@@ -18,10 +18,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # - name: Build the base image
-      #   run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t $PROJECT_NAME/builder -f builder.dockerfile .
-      
-      - name: tag latest
-        run: exit 0 # not implemented
-
-              # ref -t $REPO_NAME/$IMPORT_TOOL_TAG:${{ github.ref_name }}  :${{ github.sha }}
+      - name: Tag Builder Latest
+        run: |
+        docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:${{ github.sha }}
+        docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:${{ github.ref_name }}
+        docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:latest
