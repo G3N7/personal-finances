@@ -29,14 +29,14 @@ jobs:
     secrets: inherit
     needs: checkout
 
+  codeQL:
+    uses: ./.github/workflows/codeql-analysis.yml
+    needs: checkout
+
   audit:
     uses: ./.github/workflows/container-audit.yml
     needs: build-and-publish
   
-  codeQL:
-    uses: ./.github/workflows/codeql-analysis.yml
-    needs: build-and-publish
-    
   test:
     uses: ./.github/workflows/container-test.yml
     needs: build-and-publish
