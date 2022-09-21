@@ -22,6 +22,10 @@ Run `git clone https://github.com/G3N7/personal-finances` in what ever directory
 * Click the little green button in the bottom left of VSCode to reopen inside of a container.
 * Once the environment is setup for the first time it will open much faster.
 * run `npm start` to build and run the applications hosted via npm.
+* In a browser open a tab to the following URLs and you should see:
+  * [Kibana](http://localhost:5601/) - The Kibana web interface that lets you build visualizations around the Transaciton Data
+  * [Angular App](http://localhost:4200/) - This is our little import tool website we are building
+  * [Elastic Search API](http://localhost:9200/) - This is basically the "database" for the Kibana UI, we are using our import tool to fill this database up in a way that Kibana can index/visualize.
 
 ### Troubleshooting
 If your Kibana frontend cannot be reached or you cannot contact the elastic search API, you should open the docker log for the `sebp/elk` container running in your docker desktop, and look for an error line.  The most common problem is the following error where the defaults need to be raised.
