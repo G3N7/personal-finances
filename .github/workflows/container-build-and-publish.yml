@@ -34,10 +34,10 @@ jobs:
         run: echo "We will be building $REPO_NAME/$BUILDER_TAG in order to create the $REPO_NAME/$IMPORT_TOOL_TAG"
 
       - name: Build Base Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t gent/personal-finance-builder -t personal-finance-builder -f builder.dockerfile .
+        run: docker build -t $REPO_NAME/$BUILDER_TAG:${{ github.sha }} -t $REPO_NAME/$BUILDER_TAG:${{ github.ref_name }} -t $REPO_NAME/$BUILDER_TAG -t $BUILDER_TAG -f builder.dockerfile .
 
       - name: Build Import Tools Image
-        run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t gent/personal-finance-import-tool -t personal-finance-import-tool -f import-tool.dockerfile .
+        run: docker build -t $REPO_NAME/$IMPORT_TOOL_TAG:${{ github.sha }} -t $REPO_NAME/$IMPORT_TOOL_TAG:${{ github.ref_name }} -t $REPO_NAME/$IMPORT_TOOL_TAG -t $IMPORT_TOOL_TAG -f import-tool.dockerfile .
 
       - name: Push Images
-        run: docker push --all-tags gent/personal-finance-builder && docker push --all-tags gent/personal-finance-import-tool
+        run: docker push --all-tags $REPO_NAME/$BUILDER_TAG && docker push --all-tags $REPO_NAME/$IMPORT_TOOL_TAG
