@@ -4,6 +4,9 @@ WORKDIR /personal-finance
 # update os dependencies
 RUN apk update && apk upgrade
 
+# debt: should do this in one line so its one layer
+RUN apk --no-cache upgrade && apk add --no-cache chromium
+
 # update npm
 RUN npm install -g npm@latest
 
