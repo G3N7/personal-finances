@@ -2,6 +2,7 @@
 
 [![Dev Environment Health](https://github.com/G3N7/personal-finances/actions/workflows/dev-environement-health.yml/badge.svg)](https://github.com/G3N7/personal-finances/actions/workflows/dev-environement-health.yml)
 [![Container Workflow](https://github.com/G3N7/personal-finances/actions/workflows/container-workflow.yml/badge.svg)](https://github.com/G3N7/personal-finances/actions/workflows/container-workflow.yml)
+[![CodeQL](https://github.com/G3N7/personal-finances/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/G3N7/personal-finances/actions/workflows/codeql-analysis.yml)
 
 ## Dev Setup
 
