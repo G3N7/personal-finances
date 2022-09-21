@@ -3,6 +3,7 @@
 name: Container Build and Publish
 
 env:
+  REPO_NAME: gent
   BUILDER_TAG: personal-finance-builder
   IMPORT_TOOL_TAG: personal-finance-import-tool
 # Controls when the workflow will run
@@ -28,6 +29,9 @@ jobs:
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
         run: |
           echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
+
+      - name: Explain
+        run: echo "We will be building $REPO_NAME/$BUILDER_TAG in order to create the $REPO_NAME/$IMPORT_TOOL_TAG"
 
       - name: Build Base Image
         run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t gent/personal-finance-builder -t personal-finance-builder -f builder.dockerfile .
