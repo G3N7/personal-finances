@@ -11,12 +11,12 @@ env:
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   schedule:
     # Run daily at 13:49
-    - cron: '49 13 * * *'
+    - cron: "49 13 * * *"
 
 jobs:
   checkout:
@@ -40,7 +40,7 @@ jobs:
   audit:
     uses: ./.github/workflows/container-audit.yml
     needs: build-and-publish
-  
+
   test:
     uses: ./.github/workflows/container-test.yml
     needs: build-and-publish
@@ -48,7 +48,9 @@ jobs:
   tag-latest:
     uses: ./.github/workflows/container-tag-latest.yml
     needs: [audit, test, codeQL]
-    env: inherit
+    with:
+      repo_name: ${{ env.REPO_NAME }}
+      container_tags: "[ $BUILDER_TAG, $TESTER_TAG, $IMPORT_TOOL_TAG ]"
 
   # promote:
   #   run: echo "Replace Staging/Production w/e you would like to do after you have a clean new version of the software."
