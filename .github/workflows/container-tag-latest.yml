@@ -20,6 +20,17 @@ jobs:
     steps:
       - name: Tag Builder Latest
         run: |
-          docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:${{ github.sha }}
-          docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:${{ github.ref_name }}
-          docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:latest
+        docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:${{ github.sha }}
+        docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:${{ github.ref_name }}
+        docker tag $REPO_NAME/$BUILDER_TAG:${{ github.sha }} $REPO_NAME/$BUILDER_TAG:latest
+
+
+
+      # steps:
+      # - name: Tag Builder Latest
+      #   run: |
+      #     for CONTAINER_TAG in $CONTAINER_TAGS
+      #       docker tag $REPO_NAME/$CONTAINER_TAG:${{ github.sha }} $REPO_NAME/$CONTAINER_TAG:${{ github.sha }}
+      #       docker tag $REPO_NAME/$CONTAINER_TAG:${{ github.sha }} $REPO_NAME/$CONTAINER_TAG:${{ github.ref_name }}
+      #       docker tag $REPO_NAME/$CONTAINER_TAG:${{ github.sha }} $REPO_NAME/$CONTAINER_TAG:latest
+      #     done
