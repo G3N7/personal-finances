@@ -2,7 +2,11 @@ name: Container Workflow
 
 env:
   CONTAINER_DIR: ./.github/workflows/container
-  
+  REPO_NAME: gent
+  BUILDER_TAG: personal-finance-builder
+  TESTER_TAG: personal-finance-tester
+  IMPORT_TOOL_TAG: personal-finance-import-tool
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -43,7 +47,8 @@ jobs:
 
   tag-latest:
     uses: ./.github/workflows/container-tag-latest.yml
-    needs: [audit, test]
+    needs: [audit, test, codeQL]
+    env: inherit
 
   # promote:
   #   run: echo "Replace Staging/Production w/e you would like to do after you have a clean new version of the software."
