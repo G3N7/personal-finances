@@ -17,6 +17,7 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ "main" ]
+  workflow_call:
   schedule:
    # run weekly at 10:43 on Saturday
     - cron: '43 10 * * 6'
