@@ -44,4 +44,7 @@ jobs:
         run: docker build -t $REPO_NAME/$IMPORT_TOOL_TAG:${{ github.sha }} -t $IMPORT_TOOL_TAG -f import-tool.dockerfile .
 
       - name: Push Images
-        run: docker push $REPO_NAME/$BUILDER_TAG:${{ github.sha }} && docker push $REPO_NAME/$TESTER_TAG:${{ github.sha }} && docker push $REPO_NAME/$IMPORT_TOOL_TAG:${{ github.sha }}
+        run: |
+          docker push $REPO_NAME/$BUILDER_TAG:${{ github.sha }}
+          docker push $REPO_NAME/$TESTER_TAG:${{ github.sha }}
+          docker push $REPO_NAME/$IMPORT_TOOL_TAG:${{ github.sha }}
