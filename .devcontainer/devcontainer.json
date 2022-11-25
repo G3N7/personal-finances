@@ -16,8 +16,7 @@
 				"ms-azuretools.vscode-docker",
 				"yzhang.markdown-all-in-one",
 				"eamodio.gitlens",
-				"Angular.ng-template",
-				"redhat.vscode-yaml"
+				"Angular.ng-template"
 			]
 		}
 	},
