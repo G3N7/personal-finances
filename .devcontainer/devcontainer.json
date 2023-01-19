@@ -17,7 +17,8 @@
 				"yzhang.markdown-all-in-one",
 				"eamodio.gitlens",
 				"Angular.ng-template",
-				"ms-vscode-remote.remote-containers"
+				"ms-vscode-remote.remote-containers",
+				"christian-kohler.npm-intellisense"
 			]
 		}
 	},
