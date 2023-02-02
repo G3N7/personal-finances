@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Thanks https://github.com/nickjj/wait-until
 
 command="${1}"
