@@ -32,7 +32,7 @@ jobs:
       #   run: docker compose -f $DEV_ENV_COMPOSE_FILE exec app npm start
 
       - name: Wait until the environment is up
-        run: $WORK_DIR/helpers/wait-until.sh "docker compose -f $DEV_ENV_COMPOSE_FILE logs | grep 'current.health=\"GREEN\"'"
+        run: bash $WORK_DIR/helpers/wait-until.sh "docker compose -f $DEV_ENV_COMPOSE_FILE logs | grep 'current.health=\"GREEN\"'"
         shell: bash
 
       - name: Check for Elk Server
