@@ -8,7 +8,7 @@ env:
   TESTER_TAG: personal-finance-tester
   IMPORT_TOOL_TAG: personal-finance-import-tool
 # Controls when the workflow will run
-on: 
+on:
   # Makes this callable
   workflow_call:
 

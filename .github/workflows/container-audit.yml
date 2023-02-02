@@ -20,7 +20,7 @@ jobs:
     steps:
       # - name: Build the base image
       #   run: docker build -t build:${{ github.sha }} -t branch:${{ github.ref_name }} -t $PROJECT_NAME/builder -f builder.dockerfile .
-      
+
       # Runs a single command using the runners shell
       - name: NPM Audit
         run: docker run gent/personal-finance-builder:${{ github.sha }} npm audit --audit-level high

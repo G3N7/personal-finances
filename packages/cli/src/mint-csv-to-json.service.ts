@@ -1,5 +1,3 @@
 export class MintCsvToJsonService {
-  public convert(csvContents: string) {
-
-  }
+  public convert(csvContents: string) {}
 }
